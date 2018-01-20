@@ -1,3 +1,5 @@
+
+{% load staticfiles %}
 <!DOCTYPE html>
 
 <html>
@@ -5,6 +7,7 @@
   <meta charset="utf-8">
 
   <title>Sixerr App</title>
+  <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
 
   </head>
 
@@ -15,7 +18,7 @@
     </div>
 
     <hr>
-    {% block page %}
+    {% block   page %}
     {% endblock %}
 
 
