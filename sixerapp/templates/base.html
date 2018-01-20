@@ -15,6 +15,11 @@
 
     <div>
       Header
+      <p>
+        Hello {{ user.username }}
+      </p>
+      <a href="{% url 'social:begin' 'github'%}?next{{request.path}}">Login</a>
+      <a href="{% url 'auth:logout'%}?next{{request.path}}">Logout</a>
     </div>
 
     <hr>
