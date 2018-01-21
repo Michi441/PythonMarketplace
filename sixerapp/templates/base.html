@@ -16,17 +16,7 @@
 
   <body>
 
-    <div>
-      Header
-      <p>
-
-
-
-      </p>
-      <a href="{% url 'social:begin' 'github'%}?next{{request.path}}">Login</a>
-      <a href="{% url 'auth:logout'%}?next{{request.path}}">Logout</a>
-    </div>
-
+    <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Sixerr</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,27 +49,42 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
+
         </div>
-
-
-
       </nav>
-
-
-
-
-      <div id="category">
-        <div class="container">
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">Hello</li>
-            <li class="nav-item"> Hello</li>
-            <li><a class="nav-link" href="{% url 'social:begin' 'github'%}?next{{request.path}}">Login</a></li>
-            <li><a class="nav-link" href="{% url 'social:begin' 'github'%}?next{{request.path}}">Login</a></li>
-          </ul>
-        </div>
-        </div>
       </div>
+
+      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+
+
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Graphics & Illustrations <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Digital Marketing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Video & Animations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Music & Audio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Programming & Tech</a>
+          </li>
+
+        </ul>
+
+      </div>
+    </nav>
+
+    
+      <hr>
+
+
 
 
 
@@ -87,12 +92,19 @@
 
 
     <hr>
-    {% block   page %}
-    {% endblock %}
+      <div id="body">
+        <div class="container">
+          {% block   page %}
+          {% endblock %}
+
+        </div>
+      </div>
 
 
-    <div>
-      Footer
+    <div id="footer">
+      <div class="container">
+        <span>Sixer App &copy;</span>
+      </div>
     </div>
   </body>
 </html>

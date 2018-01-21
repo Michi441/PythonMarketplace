@@ -1,4 +1,26 @@
 
-#category a{
-  padding: 5px 15px;
+.second-nav li{
+  display: inline;
+  padding: 5px;
+
+}
+
+.second-nav{
+  margin-top: 5px;
+}
+
+#footer{
+  padding: 20px 0;
+}
+
+
+
+
+.container {
+  width: 1100px;
+}
+
+body{
+  padding-top: 60px;
+  background: #f7f7f7;
 }
