@@ -147,5 +147,23 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'sixerapp.social-auth-pipeline.save_avatar'
+)
+
 SOCIAL_AUTH_GITHUB_KEY = '19998e6293052875d345'
 SOCIAL_AUTH_GITHUB_SECRET = 'a55e2f47a44b28b46479bc636bbf9d40e0fb3a5f'
+
+# Setup upload directory for media uploads
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

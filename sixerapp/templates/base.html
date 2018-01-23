@@ -37,6 +37,14 @@
               <a class="nav-link" href="{% url 'auth:logout'%}?next{{request.path}}">Logout</a>
             </li>
 
+            {% if user.is_superuser %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin:index'%}">Admin</a>
+            </li>
+
+            {% endif %}
+
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li>
