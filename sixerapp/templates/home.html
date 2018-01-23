@@ -1,14 +1,33 @@
 {% extends 'base.html' %}
 
 
+{% load staticfiles %}
+
 {% block page %}
 
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+  <div class="row">
+    <div class="col-md-12">
+      <img src="{% static 'img/banner.gif'%}" class="banner">
+    </div>
 
 
-  <p>Home Page</p>
-  <a href="/gigs/1"> Gig Detail </a>
-  <a href="{% url 'gig_detail' '1' %}">Gig Detail</a>
+
+  {% for i in '12345678' %}
 
 
+    <div class="card" style="width: 18rem;" id="card-style">
+  <img class="card-img-top" src="{% static 'img/gig.png'%}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><a href="{% url 'gig_detail' i%}">I will create your website!</a></h5>
+    <p class="card-text">by <a href=""> IronMan </a><b class="green pull-right">$6</b></p>
+    <a href="{% url 'gig_detail' i %}" class="btn btn-primary">Learn more</a>
+  </div>
+  </div>
 
-{% endblock %}
+  {% endfor %}
+
+
+  {% endblock %}
+</div>

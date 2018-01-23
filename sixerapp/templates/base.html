@@ -10,7 +10,8 @@
   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
   </head>
 
@@ -26,7 +27,11 @@
           <ul class="navbar-nav mr-auto">
             {% if user and not user.is_anonymous %}
             <li class="nav-item active">
-              <a class="nav-link" href="#">{{ user.get_full_name|default:user.username }} <span class="sr-only">(current)</span></a>
+
+              <a class="nav-link" href="#">
+
+                <img src="{% static 'img/favicon.png'%}" class="img-circle" height="22" width="22">
+                {{ user.get_full_name|default:user.username }} <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'auth:logout'%}?next{{request.path}}">Logout</a>
@@ -81,7 +86,7 @@
       </div>
     </nav>
 
-    
+
       <hr>
 
 
@@ -94,7 +99,7 @@
     <hr>
       <div id="body">
         <div class="container">
-          {% block   page %}
+          {% block page %}
           {% endblock %}
 
         </div>
