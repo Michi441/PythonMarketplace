@@ -14,15 +14,17 @@
 
 
 
-  {% for i in '12345678' %}
+  {% for gig in gigs %}
 
 
     <div class="card" style="width: 18rem;" id="card-style">
-  <img class="card-img-top" src="{% static 'img/gig.png'%}" alt="Card image cap">
+  <img class="card-img-top" src="/media/{{ gig.photo}}" alt="Card image cap">
+
+
   <div class="card-body">
-    <h5 class="card-title"><a href="{% url 'gig_detail' i%}">I will create your website!</a></h5>
-    <p class="card-text">by <a href=""> IronMan </a><b class="green pull-right">$6</b></p>
-    <a href="{% url 'gig_detail' i %}" class="btn btn-primary">Learn more</a>
+    <h5 class="card-title"><a href="{% url 'gig_detail' gig.id %}">{{gig.title}}</a></h5>
+    <p class="card-text">by <a href=""> {{ gig.user.username }} </a><b class="green pull-right">${{ gig.price }}</b></p>
+    <a href="{% url 'gig_detail' gig.id %}" class="btn btn-primary">Learn more</a>
   </div>
   </div>
 

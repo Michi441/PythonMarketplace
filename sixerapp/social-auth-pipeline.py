@@ -9,6 +9,4 @@ def save_avatar(backend, user, response, *args, **kwargs):
 
     if backend.name == 'github':
         profile.avatar = 'https://github.com/images/error/octocat_happy.gif'
-
-
     profile.save()

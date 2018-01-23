@@ -30,7 +30,9 @@
 
               <a class="nav-link" href="#">
 
-                <img src="{% static 'img/favicon.png'%}" class="img-circle" height="22" width="22">
+                <img src="{% if user.profile %} {{user.profile.avatar}} {% else %} {% static 'img/avatar.png'%}" class="img-circle" height="22" width="22">
+
+                {% endif %}
                 {{ user.get_full_name|default:user.username }} <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
