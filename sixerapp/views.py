@@ -16,6 +16,10 @@ def gig_detail(request, id):
         return redirect('/')
     return render(request, 'gig_detail.html', {})
 
+
+def edit_gig(request, id):
+    return render(request, 'edit_gig.html', {})
+
 @login_required(login_url="/")
 def create_gig(request):
     error = ''
