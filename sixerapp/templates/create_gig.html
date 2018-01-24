@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block page %}
+  <form action="POST">
+    {% csrf_token %}
+    {{ gig_form }}
+    <button type="submit"> Publish! </button>
+  </form>
+  <h2>Create Gig</h2>
+{% endblock %}
