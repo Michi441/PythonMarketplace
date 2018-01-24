@@ -27,6 +27,7 @@ def create_gig(request):
             gig.save()
             return redirect ('my_gigs')
         else:
+            print(gig_form.errors)
             error = 'Data is not valid'
 
     gig_form = GigForm()
