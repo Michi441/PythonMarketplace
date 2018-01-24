@@ -3,5 +3,30 @@
 {% load staticfiles %}
 
 {% block page %}
-  <h2>My Gig</h2>
+
+  <h2 style="margin-bottom: 30px">My Gig</h2>
+  <div class="card">
+    <table class="table table-borderend tabled-striped">
+      <thead class="bg-success">
+        <tr>
+          <th>
+            <th>Gig Detail</th>
+            <th>Price ($)</th>
+            <th>Status </th>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for gig in gigs %}
+        <tr>
+          <td>{{ forloop.counter}}</td>
+          <td>{{ gig.title }}</td>
+          <td>{{ gig.price }}</td>
+          <td> {% if gig.status %} Active {% else %} Disabled {% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}
