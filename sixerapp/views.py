@@ -60,8 +60,9 @@ def my_gigs(request):
 def profile(request, username):
     try:
         profile = Profile.objects.get(user__username=username)
+        gigs = Gig.objects.filter(user=profile.user, status=True)
     except Profile.DoesNotExist:
         redirect('/')
-        
-    gigs = Gig.objects.filter(user=profile.user, status=True)
+
+
     return render(request, 'profile.html', { 'gigs': gigs, 'profile': profile})
