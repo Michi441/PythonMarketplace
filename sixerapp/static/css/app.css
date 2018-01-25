@@ -14,7 +14,8 @@
 }
 
 #jumbo{
-  background: url('media/gigs/background.gif');
+  background-image: url("/static/img/back.jpg");
+  color: white;
 }
 
 a {
