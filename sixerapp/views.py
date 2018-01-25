@@ -65,4 +65,4 @@ def profile(request, username):
         redirect('/')
 
 
-    return render(request, 'profile.html', { 'gigs': gigs, 'profile': profile})
+    return render(request, 'profile.html', {'profile': profile, 'gigs': gigs})
