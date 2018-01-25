@@ -16,11 +16,14 @@ def home(request):
     return render(request, 'home.html', {"gigs": gigs})
 
 def gig_detail(request, id):
+
     try:
         gig = Gig.objects.get(id=id)
     except Gig.DoesNotExist:
         return redirect('/')
-    return render(request, 'gig_detail.html', {'gig': gig})
+
+    client_token = braintree.ClientToken.generate()
+    return render(request, 'gig_detail.html', {'gig': gig, 'client_token': client_token})
 
 
 def edit_gig(request, id):
@@ -78,3 +81,25 @@ def profile(request, username):
 
     gigs = Gig.objects.filter(user=profile.user, status=True)
     return render(request, 'profile.html', {'profile': profile, 'gigs': gigs})
+
+
+@login_required(login_url='/')
+def checkout(request):
+    if request.method == 'POST':
+        try:
+            gig = Gig.objects.get(id=request.POST['gig_id'])
+        except Gig.DoesNotExist:
+            return redirect('/')
+
+        nonce = request.POST["payment_method_nonce"]
+        result = braintree.Transaction.sale({
+            "amount": gig.price,
+            "payment_method_nonce": nonce
+        })
+
+        if result.is_success:
+            print('Buy gig success!')
+        else:
+            print('Buy gig error!')
+
+    return redirect('/')
