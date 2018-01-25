@@ -56,7 +56,7 @@ def my_gigs(request):
     return render(request, 'my_gigs.html', {'gigs': gigs})
 
 
-@login_required(login_url="/")
+
 def profile(request, username):
     try:
         profile = Profile.objects.get(user__username=request.user.username)
