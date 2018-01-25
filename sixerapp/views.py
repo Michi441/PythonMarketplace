@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Gig
+from .models import Gig, Profile
 from django.contrib.auth.decorators import login_required
 from .forms import GigForm
 
@@ -58,4 +58,10 @@ def my_gigs(request):
 
 @login_required(login_url="/")
 def profile(request, username):
-    return render(request, 'profile.html', {})
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except Profile.DoesNotExist:
+        redirect('/')
+        
+    gigs = Gig.objects.filter(user=profile.user, status=True)
+    return render(request, 'profile.html', { 'gigs': gigs, 'profile': profile})
