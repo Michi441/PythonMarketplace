@@ -59,8 +59,8 @@ def my_gigs(request):
 @login_required(login_url="/")
 def profile(request, username):
     try:
-        profile = Profile.objects.get(user__username=username)
-        gigs = Gig.objects.filter(user=profile.user, status=True)
+        profile = Profile.objects.get(user__username=request.user.username)
+        gigs = Gig.objects.filter(user=request.profile.user, status=True)
     except Profile.DoesNotExist:
         redirect('/')
 
