@@ -6,8 +6,34 @@
 
 {% block page %}
 
+  {% if request.user == profile.user %}
+  <form method="POST">
+    {% csrf_token %}
+    <div class="jumbotron text-center" id="jumbo">
+      <h1><b>{{profile.user.username}}</b></h1>
+      <input type="text" class="form-contorl" name="slogan" value="{{profile.slogan}}">
+    </div>
+
+    <div class="card">
+      <div class="card-block">
+        <img src="{profile.avatar}" alt="" class="img-circle" height="120" width="120">
+        <h3 class="text-uppercase"><b>About {{ profile.user.username }}</b></h3>
+        <hr>
+        <p>{{ profile.about   }}</p>
+        <input type="text" class="form-control" name="about" value="{{profile.about}}">
+        <br>
+        <button class='btn btn-success' type="submit">Update Slogan</button>
+      </div>
+    </div>
+  </form>
+
+  {% else %}
+
+
+
+
   <h1>Profile Page</h1>
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center" id="jumbo">
     <h1><b>{{profile.user.username}}</b></h1>
     <p>{{profile.slogan}}</p>
 
@@ -18,7 +44,8 @@
       <img src="{{profile.avatar}}" class="img-circle" height="120" width="120">
       <h3 class="text-uppercase"><b>About {{profile.user.username}}</b></h3>
       <hr>
-      <p>{{profile.about}}</p>
+      {{profile.about}}
+
     </div>
   </div>
 
@@ -39,7 +66,7 @@
       </div>
     {% endfor %}
   </div>
-
+  {% endif %}
 
 
 

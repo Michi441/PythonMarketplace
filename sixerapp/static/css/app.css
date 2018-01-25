@@ -13,6 +13,9 @@
   padding: 20px 0;
 }
 
+#jumbo{
+  background: url('media/gigs/background.gif');
+}
 
 a {
   color: #323232;
