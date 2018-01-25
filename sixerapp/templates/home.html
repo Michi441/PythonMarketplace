@@ -23,7 +23,7 @@
 
   <div class="card-body">
     <h5 class="card-title"><a href="{% url 'gig_detail' gig.id %}">{{gig.title}}</a></h5>
-    <p class="card-text">by <a href=""> {{ gig.user.username }} </a><b class="green pull-right">${{ gig.price }}</b></p>
+    <p class="card-text">by <a href="{% url 'profile' gig.user.username %}"> {{ gig.user.username }} </a><b class="green pull-right">${{ gig.price }}</b></p>
     <a href="{% url 'gig_detail' gig.id %}" class="btn btn-primary">Learn more</a>
   </div>
   </div>

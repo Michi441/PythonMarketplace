@@ -9,7 +9,9 @@
 
 
 
-            <h3 class="card-title">{{gig.title}}</h3>
+            <h3 class="card-title">{{gig.title}}
+              
+            </h3>
 
           <hr>
           <img src="/media/{{gig.photo}}" class="img-responsive center-block" height="300" width="500">
@@ -67,10 +69,17 @@
 
 
 
-        <img src="{{ gig.user.profile.avatar }}" class="img-circle text-center" height="100" width="100">
-        <h4 class="text-center">
-          {{gig.user.username}}
-        </h4>
+        <img src=  {% if gig.user.profile.avatar %} "{{ gig.user.profile.avatar }}" {% else %} "{% static 'img/avatar.png' %}" {% endif %} class="img-circle text-center" height="100" width="100">
+
+              <a href="{% url 'profile' gig.user.username %}">
+              <h4 class="text-center">
+
+                {{gig.user.username}}
+
+              </h4>
+
+      </a>
+
 
         <hr>
         <p class="text-center">{{ gig.user.profile.about }}</p>

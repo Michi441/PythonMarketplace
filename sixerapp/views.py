@@ -14,7 +14,7 @@ def gig_detail(request, id):
         gig = Gig.objects.get(id=id)
     except Gig.DoesNotExist:
         return redirect('/')
-    return render(request, 'gig_detail.html', {})
+    return render(request, 'gig_detail.html', {'gig': gig})
 
 
 def edit_gig(request, id):
@@ -54,3 +54,8 @@ def create_gig(request):
 def my_gigs(request):
     gigs = Gig.objects.filter(user=request.user)
     return render(request, 'my_gigs.html', {'gigs': gigs})
+
+
+@login_required(login_url="/")
+def profile(request, username):
+    return render(request, 'profile.html', {})
