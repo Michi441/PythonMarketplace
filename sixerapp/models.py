@@ -37,3 +37,11 @@ class Gig(models.Model):
 
     def __str__(self):
         return self.title
+
+class Purchase(models.Model):
+    gig = models.ForeignKey(Gig)
+    buyer = models.ForeignKey(User)
+    time = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.gig.title

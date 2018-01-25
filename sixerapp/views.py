@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Gig, Profile
+from .models import Gig, Profile, Purchase
 from django.contrib.auth.decorators import login_required
 from .forms import GigForm
 
@@ -99,6 +99,7 @@ def checkout(request):
 
         if result.is_success:
             print('Buy gig success!')
+            Purchase.objects.create(gig=gig, buyer=request.user)
         else:
             print('Buy gig error!')
 
