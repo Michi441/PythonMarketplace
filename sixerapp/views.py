@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Gig, Profile, Purchase
+from .models import Gig, Profile, Purchase, Review
 from django.contrib.auth.decorators import login_required
 from .forms import GigForm
 
@@ -22,8 +22,14 @@ def gig_detail(request, id):
     except Gig.DoesNotExist:
         return redirect('/')
 
+    if request.user.is_anonymous():
+        show_post_review=False
+    else:
+        show_post_review = Purchase.objects.filter(gig=gig, buyer=request.user).count() > 0
+
+    reviews = Review.objects.filter(gig=gig)
     client_token = braintree.ClientToken.generate()
-    return render(request, 'gig_detail.html', {'gig': gig, 'client_token': client_token})
+    return render(request, 'gig_detail.html', {'reviews': reviews,'gig': gig, 'client_token': client_token})
 
 
 def edit_gig(request, id):

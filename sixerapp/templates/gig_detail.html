@@ -32,19 +32,36 @@
 
         <div class="card-header">
         <h4>Review</h4>
+
+        {% if show_post_review %}
+          <div class="card-block">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <textarea name="content" class="form-control">
+
+                </textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class:'btn btn-success'>Post</button>
+              </div>
+            </form>
+          </div>
+
+        {% endif %}
         <ul class="list-group">
-        {% for i in '123' %}
+        {% for review in reviews %}
 
           <li class="list-group-item">
             <div class="row">
               <div class="col-md-12">
-                <img src="{% static 'img/avatar.png' %}" class="rounded-circle center-block" height='60' width='60'>
+                <img src="{{ review.user.profile.avatar }}" class="rounded-circle center-block" height='60' width='60'>
               </div>
 
               <div class="col-md-10">
-                <h5>Iron Man</h5>
+                <h5>{{ review.user.username}}</h5>
 
-                <p>Great Job. This guy is awesome!!</p>
+                <p> {{ review.content }}</p>
 
             </div>
               </div>
