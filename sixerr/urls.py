@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^profile/(?P<username>\w+)/$', views.profile, name="profile"),
     url(r'^checkout/$', views.checkout, name="checkout"),
     url(r'^my_sellings/$', views.my_sellings, name="my_sellings"),
-    url(r'^my_buys/$', views.my_buys, name='my_buys')
+    url(r'^my_buys/$', views.my_buys, name='my_buys'),
+    url(r'^category/(?P<link>[\w|-]+)/$', views.category, name="category")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
