@@ -17,19 +17,29 @@ def home(request):
 
 def gig_detail(request, id):
 
+    if request.method == 'POST' and \
+        not request.user.is_anonymous() and \
+        'content' in request.POST and \
+        request.POST['content'].strip() != '':
+        Review.objects.create(content=request.POST['content'], gig_id=id, user=request.user)
+
+
     try:
         gig = Gig.objects.get(id=id)
     except Gig.DoesNotExist:
         return redirect('/')
 
-    if request.user.is_anonymous():
+
+    if request.user.is_anonymous() or \
+        Purchase.objects.filter(gig=gig, buyer=request.user).count() == 0 or \
+        Review.objects.filter(gig=gig, user=request.user).count() > 0:
         show_post_review=False
     else:
         show_post_review = Purchase.objects.filter(gig=gig, buyer=request.user).count() > 0
 
     reviews = Review.objects.filter(gig=gig)
     client_token = braintree.ClientToken.generate()
-    return render(request, 'gig_detail.html', {'reviews': reviews,'gig': gig, 'client_token': client_token})
+    return render(request, 'gig_detail.html', {'show_post_review': show_post_review, 'reviews': reviews,'gig': gig, 'client_token': client_token})
 
 
 def edit_gig(request, id):
