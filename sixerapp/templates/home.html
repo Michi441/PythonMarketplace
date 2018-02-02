@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+c{% extends 'base.html' %}
 
 
 {% load staticfiles %}
@@ -16,17 +16,19 @@
 
   {% for gig in gigs %}
 
-
-    <div class="card" style="width: 18rem;" id="card-style">
-  <img class="card-img-top" src="/media/{{ gig.photo}}" alt="Card image cap">
+<div class="col-md-4">
+    <div class="card" style="width: 15rem;" id="card-style">
+  <img class="card-img-top text-center" src="/media/{{ gig.photo}}" alt="Card image cap "style="height: 10rem; width: 10rem;">
 
 
   <div class="card-body">
     <h5 class="card-title"><a href="{% url 'gig_detail' gig.id %}">{{gig.title}}</a></h5>
-    <p class="card-text">by <a href="{% url 'profile' gig.user.username %}"> {{ gig.user.username }} </a><b class="green pull-right">${{ gig.price }}</b></p>
+    <p class="card-text">by<a href="{% url 'profile' gig.user.username %}">{{ gig.user.username}}</a><b class="green pull-right">${{ gig.price }}</b></p>
     <a href="{% url 'gig_detail' gig.id %}" class="btn btn-primary">Learn more</a>
   </div>
   </div>
+  </div>
+
 
   {% endfor %}
 
